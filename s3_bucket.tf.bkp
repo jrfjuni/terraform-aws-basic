@@ -1,0 +1,13 @@
+resource "aws_s3_bucket" "terraformstate-bucket" {
+    bucket = "YOUR_BUCKET_NAME"
+    acl = "private"
+
+    versioning {
+      enabled = true
+    }
+
+    tags = {
+        Name = "terraformstate-storage-bucket"
+        description = "Terraformstate storage bucket"
+    }  
+}
