@@ -1,12 +1,11 @@
 provider "aws" {
-    alias = "east"
-    region = "us-east-2"
+    region = var.region
 }
 
 resource "aws_instance" "app_server" {
-    ami           = "ami-0443305dabd4be2bc"
+    ami           = data.aws_ami.amazon_linux.id
     instance_type = "t2.micro"
-    count = 2
+    count = var.number_of_instances
     vpc_security_group_ids = ["${aws_security_group.app_server-sg.id}"]
 
     tags = {
